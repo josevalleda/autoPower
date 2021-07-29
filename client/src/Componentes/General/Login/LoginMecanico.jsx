@@ -13,7 +13,6 @@ export function LoginMecanico(params) {
             <input type="password" name="clave" id="clave" placeholder="Contraseña"></input>
             <button id="login" className="button_primary">Inciar Sesión</button>
             <Link to="/loginUsuario">Incio sesión usuario</Link>
-
         </div>
     );
 }
