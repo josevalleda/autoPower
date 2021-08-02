@@ -96,4 +96,60 @@ router.post(`${URI_USUARIOS}/login`, (req, res) => {
 });
 
 
+//Ruta para editar un usuario
+router.put(`${URI_USUARIOS}/editarUsuario`, (req, res) => {
+    try {
+        const {
+            usuario,
+            password,
+            nombres,
+            email
+        } = req.body;
+
+        let {
+            nuevo_usuario
+        } = req.body;
+
+
+        mysqlConnection.query('SELECT idusuarios FROM usuarios WHERE usuario = ?;', [usuario], (err, rows) => {
+            if (!err) {
+                idUsuario = rows[0].idusuarios;
+                if (usuario == nuevo_usuario) {
+                    nuevo_usuario = usuario;
+                }
+
+                if (password != '') {
+                    mysqlConnection.query('UPDATE usuarios SET usuario = ?, nombres = ?, email = ?, password = ? WHERE idusuarios = ?;', [nuevo_usuario, nombres, email, bcrypt.hashSync(password, 10), idUsuario], (err) => {
+                        if (!err) {
+                            res.json({
+                                status: true,
+                                message: 'Datos actualizados'
+                            })
+                        } else {
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    mysqlConnection.query('UPDATE usuarios SET usuario = ?, nombres = ?, email = ? WHERE idusuarios = ?;', [nuevo_usuario, nombres, email, idUsuario], (err) => {
+                        if (!err) {
+                            res.json({
+                                status: true,
+                                message: 'Datos actualizados'
+                            })
+                        } else {
+                            console.log(err);
+                        }
+                    });
+                }
+            } else {
+                console.err(err);
+            }
+        })
+
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+
 module.exports = router;
