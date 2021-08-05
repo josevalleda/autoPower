@@ -45,7 +45,8 @@ footer {
 }
 
 header a,
-header a:visited , .div_login a{
+header a:visited,
+.div_login a {
   text-decoration: none;
   color: #47525E;
 }
@@ -54,6 +55,11 @@ footer a,
 footer a:visited {
   text-decoration: none;
   color: #F7F7F7;
+}
+
+.card_menu a {
+  text-decoration: none;
+  color: #47525E;
 }
 
 header a:hover {
@@ -96,8 +102,6 @@ footer {
   height: 224px;
 }
 
-.button_secondary {}
-
 .card {
   width: 300px;
   margin: auto 20px;
@@ -117,7 +121,9 @@ footer {
 }
 
 input[type="text"],
-input[type="password"], input[type="number"], input[type="email"] {
+input[type="password"],
+input[type="number"],
+input[type="email"] {
   height: 50px;
   margin: 15px auto;
   border-radius: 5px;
@@ -138,17 +144,35 @@ input[type="password"], input[type="number"], input[type="email"] {
   border: 1px;
 }
 
-.text_secondary{
+.button_secondary {
+  padding: 15px;
+  border-radius: 5px;
+  outline: none;
+  color: #47525E;
+  margin: 10px auto;
+  border: 1px solid #47525E;
+}
+
+
+
+.text_secondary {
   color: #8190A5;
 }
 
-.div_login h1,.div_login p, .div_login a{
+.div_login h1,
+.div_login p,
+.div_login a {
   margin: auto;
   margin: 10px auto;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
+.card_menu img {
+  width: 200px;
+  object-fit: cover;
+  height: 200px;
+}

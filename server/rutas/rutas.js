@@ -3,5 +3,6 @@ const app = express();
 
 app.use(require('./usuario'));
 app.use(require('./vehiculo'));
+app.use(require('./arreglo'));
 
 module.exports = app;

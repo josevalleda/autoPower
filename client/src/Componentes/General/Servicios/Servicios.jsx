@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import ReactDom from 'react-dom'
-import { Link } from 'react-router-dom'
 import { Card } from './Card'
 
 let servicios = [
