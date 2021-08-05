@@ -1,39 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import API_USUARIO from '../../../API_METHODS/Usuario/API_USUARIO';
 
-let data = [
-  {
-    idarreglo: 1,
-    vehiculo: 3,
-    fecha: '2021-08-02T05:00:00.000Z',
-    tipo_arreglo: 'asdasda',
-    taller: 1,
-    precio: 0,
-    idvehiculo: 3,
-    nombre: 'Carro2',
-    marca: 'mazda',
-    modelo: '2012',
-    color: 'rojo',
-    propietario: 2,
-    estado: 0,
-  },
-  {
-    idarreglo: 3,
-    vehiculo: 3,
-    fecha: '2021-08-06T05:00:00.000Z',
-    tipo_arreglo: 'Arreglo de nada',
-    taller: 1,
-    precio: 0,
-    idvehiculo: 3,
-    nombre: 'Carro2',
-    marca: 'mazda',
-    modelo: '2012',
-    color: 'rojo',
-    propietario: 2,
-    estado: 0,
-  },
-]
 
 export function HistorialArreglo() {
+  const [data, setData] = useState([]);
+
+  const [idusuario, setidusuario] = useState(localStorage.getItem('user_autoPower_id'));
+
+
+
+  useEffect(() => {
+    API_USUARIO.obtenerArreglos(idusuario).then((respuesta)=>{
+      return respuesta;
+    })
+    .then(data=>{
+      if(data.status){
+        setData(data.data);
+      }else{
+        alert(data.message)
+      }
+    })
+    .catch(err=>console.error(err));
+  }, [idusuario])
+
   return (
     <div className="container">
       <table>
@@ -42,6 +31,8 @@ export function HistorialArreglo() {
           <th>Marca</th>
           <th>Modelo</th>
           <th>Taller</th>
+          <th>Tipo de arreglo</th>
+          <th>Descripción</th>
           <th>Fecha</th>
           <th>Precio</th>
         </thead>
@@ -51,7 +42,9 @@ export function HistorialArreglo() {
               <td>{arreglo.nombre}</td>
               <td>{arreglo.marca}</td>
               <td>{arreglo.modelo}</td>
-              <td>{arreglo.taller}</td>
+              <td>{arreglo.direccion}</td>
+              <td>{arreglo.tipo_arreglo}</td>
+              <td>{arreglo.descripcion}</td>
               <td>{arreglo.fecha}</td>
               <td>${arreglo.precio} COP</td>
             </tr>

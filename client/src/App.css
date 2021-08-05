@@ -15,6 +15,7 @@
   padding: 30px;
   flex-wrap: wrap;
   align-content: center;
+  background: #f7f7f7;
 }
 
 .container div {
@@ -175,4 +176,20 @@ input[type=number]::-webkit-outer-spin-button {
   width: 200px;
   object-fit: cover;
   height: 200px;
+}
+
+.msg_error {
+  text-align: center;
+  color: red;
+}
+
+table {
+  margin: auto;
+  text-align: center;
+}
+
+tbody tr td,
+thead th {
+  padding: 10px;
+  width: 200px;
 }

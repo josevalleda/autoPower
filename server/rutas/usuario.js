@@ -72,11 +72,12 @@ router.post(`${URI_USUARIOS}/login`, (req, res) => {
             usuario,
             password
         } = req.body
-        mysqlConnection.query('SELECT usuario, password FROM usuarios WHERE usuario = ?;', [usuario], (err, rows, fields) => {
+        mysqlConnection.query('SELECT idusuarios, usuario, password, tipo FROM usuarios WHERE usuario = ?;', [usuario], (err, rows, fields) => {
             if (!err) {
                 if (rows.length > 0) {
                     bcrypt.compare(password, rows[0].password).then((result) => {
                         res.json({
+                            idusuario: rows[0].idusuarios,
                             tipo: rows[0].tipo,
                             result: result
                         })

@@ -15,18 +15,6 @@ import { EstadoVehiculo } from './Componentes/Usuario/Vehiculo/EstadoVehiculo'
 import { AgregarVehiculo } from './Componentes/Usuario/Vehiculo/AgregarVehiculo'
 import { AgendarArreglo } from './Componentes/Usuario/Arreglos/AgendarArreglo'
 
-
-
-
-
-
-
-
-
-
-
-
-
 function App() {
   return (
     <Router>

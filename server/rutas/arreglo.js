@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express')
 const mysqlConnection = require('../database.js')
 
@@ -43,7 +44,22 @@ router.post(`${URI_ARREGLOS}/agregar`, (req, res) => {
         taller
     } = req.body
 
-    mysqlConnection.query('INSERT INTO arreglo (vehiculo, fecha, tipo_arreglo, taller) VALUES (?,?,?,?)', [vehiculo, fecha, tipo_arreglo, taller], (err, rows) => {
+
+    console.log(vehiculo);
+
+    mysqlConnection.query('INSERT INTO arreglo (vehiculo, fecha, tipo_arreglo, taller) VALUES (?,?,?,?)', [vehiculo, fecha, tipo_arreglo, taller], (err) => {
+        if (err) {
+            console.log(err);
+            res.json({
+                status: false,
+                message: 'Ocurrió un error al agendar, intente nuevamente, por favor'
+            })
+            return;
+        }
+    })
+
+
+    mysqlConnection.query('UPDATE vehiculo SET estado = 1 WHERE idvehiculo = ?;', [vehiculo], (err) => {
         if (!err) {
             res.json({
                 status: true,
@@ -52,7 +68,7 @@ router.post(`${URI_ARREGLOS}/agregar`, (req, res) => {
         } else {
             console.log(err);
             res.json({
-                status: true,
+                status: false,
                 message: 'Ocurrió un error al agendar, intente nuevamente, por favor'
             })
         }
