@@ -43,7 +43,7 @@ export function LoginMecanico(params) {
 
   return (
     <div className="div_login">
-      <h1>Inciar Sesión</h1>
+      <h1>Iniciar Sesión</h1>
       <p className="text_secondary">Ingrese sus credenciales de mecánico</p>
       <input
         type="number"
@@ -67,9 +67,9 @@ export function LoginMecanico(params) {
         <p className="msg_error">{mensaje}</p>
       </div>
       <button id="login" className="button_primary" onClick={loguear}>
-        Inciar Sesión
+        Iniciar Sesión
       </button>
-      <Link to="/loginUsuario">Incio sesión usuario</Link>
+      <Link to="/loginUsuario">Inicio sesión usuario</Link>
     </div>
   )
 }
